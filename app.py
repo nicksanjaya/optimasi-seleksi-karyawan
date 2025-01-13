@@ -37,7 +37,7 @@ def convert_df(df):
             return
         
     for i in df.columns:
-        if i != 'Produk':
+        if i != 'Nama':
             df[i] = df[i].astype(int)
             
     df.columns = [col.replace(' ','_') for col in df.columns]
