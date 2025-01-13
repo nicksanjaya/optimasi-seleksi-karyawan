@@ -50,9 +50,10 @@ def nilai(df):
 #Pendidikan
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
-    pendidikan_angka = st.multiselect('Pilih beberapa opsi:', options)
+    pendidikan = st.multiselect('Pilih beberapa opsi:', options)
+    mapping = {'SMP': 1, 'S1': 3}
+    pendidikan_angka = [mapping[p] for p in pendidikan]
     return pendidikan_angka
-    
 
 #Optimasi
 def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
