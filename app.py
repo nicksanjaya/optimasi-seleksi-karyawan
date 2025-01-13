@@ -47,6 +47,12 @@ def convert_df(df):
 def nilai(df):
     df['Nilai'] = df[['Keterampilan', 'Pengalaman', 'Kepribadian', 'Motivasi', 'Fleksibilitas']].dot([0.2, 0.2, 0.2, 0.2, 0.2])
 
+#Pendidikan
+def pendidikan():
+    options = ['S1', 'SMA', 'SMP']
+    selected_options = st.multiselect('Pilih beberapa opsi:', options)
+    
+
 #Optimasi
 def optimization(df,kuota,pengalaman,gaji):
     #Model
@@ -99,8 +105,9 @@ def optimization(df,kuota,pengalaman,gaji):
 #Upload File 
 uploaded_file = st.file_uploader("Upload Excel Master Data", type=["xlsx"])
 
-options = ['Pilihan 1', 'Pilihan 2', 'Pilihan 3']
+options = ['S1', 'SMA', 'SMP']
 selected_options = st.multiselect('Pilih beberapa opsi:', options)
+st.write(selected_options)
 
 #Upload
 if uploaded_file is not None:
@@ -117,6 +124,8 @@ if uploaded_file is not None:
     kuota = st.number_input("Kuota:", min_value=0)
     pengalaman = st.number_input("Nilai Minimal Pengalaman:", min_value=0)
     gaji = st.number_input("Gaji Maksimal:", min_value=0)
+    options = ['Pilihan 1', 'Pilihan 2', 'Pilihan 3']
+    selected_options = st.multiselect('Pilih beberapa opsi:', options)
     
     if st.button("Calculate"):
         try:
