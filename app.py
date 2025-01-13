@@ -55,7 +55,7 @@ def pendidikan():
     
 
 #Optimasi
-def optimization(df,kuota,pengalaman,gaji):
+def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     #Model
     model = pyo.ConcreteModel()
     model.karyawan = RangeSet(1, len(df))
@@ -131,7 +131,7 @@ if uploaded_file is not None:
     
     if st.button("Calculate"):
         try:
-            optimization(df,kuota,pengalaman,gaji)
+            optimization(df,kuota,pengalaman,gaji,pendidikan_angka)
         except Exception as e:
             st.error(f"Error : {e}")
 
