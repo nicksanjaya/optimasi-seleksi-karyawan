@@ -14,7 +14,7 @@ st.title('OPTIMASI SELEKSI KARYAWAN')
 
 #Imputasi
 def preprocessing(df):
-    columns_to_impute = [col for col in df.columns if col != 'Nama']
+    columns_to_impute = [col for col in df.columns if col not in ['Nama', 'Pendidikan']]
     preprocessor = ColumnTransformer([
         ('imputasi', SimpleImputer(strategy='constant', fill_value=0), columns_to_impute)],
         remainder='passthrough',
@@ -37,7 +37,7 @@ def convert_df(df):
             return
         
     for i in df.columns:
-        if i != 'Nama':
+        if i not in ['Nama', 'Pendidikan']:
             df[i] = df[i].astype(int)
             
     df.columns = [col.replace(' ','_') for col in df.columns]
