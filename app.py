@@ -51,7 +51,7 @@ def nilai(df):
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
     selected_options = st.multiselect('Pilih beberapa opsi:', options)
-    return
+    return selected_options
     
 
 #Optimasi
@@ -65,6 +65,7 @@ def optimization(df,kuota,pengalaman,gaji):
     model.gaji = Param(model.karyawan, initialize={k: df.iloc[k-1]['Gaji'] for k in range(1, len(df) + 1)})
     model.pengalaman = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pengalaman'] for k in range(1, len(df) + 1)})
     model.nilai = Param(model.karyawan, initialize={k: df.iloc[k-1]['Nilai'] for k in range(1, len(df) + 1)})    
+    model.pendidikan = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pendidikan'] for k in range(1, len(df) + 1)})
     
     #Variable
     model.x = Var(model.karyawan, domain=Binary)
@@ -81,6 +82,11 @@ def optimization(df,kuota,pengalaman,gaji):
     
     # Kendala kuota
     model.kendala_kuota = Constraint(expr=sum(model.x[k] for k in model.karyawan) <= kuota)
+
+    # Kendala pendidikan
+    model.kendala_pendidikan = pyo.ConstraintList()
+    for indeks in model.karyawan:
+        model.kendala_pendidikan.add(expr = model.pendidikan[indeks] * model.x[indeks] == pendidikan_angka[0] * model.x[indeks])
         
     # Objektif
     model.obj = Objective(expr=sum(model.nilai[k] * model.x[k] for k in model.karyawan), sense=maximize)
