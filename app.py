@@ -51,6 +51,7 @@ def nilai(df):
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
     selected_options = st.multiselect('Pilih beberapa opsi:', options)
+    return
     
 
 #Optimasi
@@ -104,11 +105,6 @@ def optimization(df,kuota,pengalaman,gaji):
 
 #Upload File 
 uploaded_file = st.file_uploader("Upload Excel Master Data", type=["xlsx"])
-
-options = ['S1', 'SMA', 'SMP']
-selected_options = st.multiselect('Pilih beberapa opsi:', options)
-st.write('Anda memilih buah-buahan:', selected_options[0])
-
 
 #Upload
 if uploaded_file is not None:
