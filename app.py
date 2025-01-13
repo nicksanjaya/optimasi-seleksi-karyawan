@@ -99,6 +99,9 @@ def optimization(df,kuota,pengalaman,gaji):
 #Upload File 
 uploaded_file = st.file_uploader("Upload Excel Master Data", type=["xlsx"])
 
+options = ['Pilihan 1', 'Pilihan 2', 'Pilihan 3']
+selected_option = st.selectbox('Pilih opsi:', options)
+
 #Upload
 if uploaded_file is not None:
     try:
