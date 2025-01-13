@@ -127,7 +127,7 @@ if uploaded_file is not None:
     kuota = st.number_input("Kuota:", min_value=0)
     pengalaman = st.number_input("Nilai Minimal Pengalaman:", min_value=0)
     gaji = st.number_input("Gaji Maksimal:", min_value=0)
-    pendidikan()
+    pendidikan_angka = pendidikan()
     
     if st.button("Calculate"):
         try:
