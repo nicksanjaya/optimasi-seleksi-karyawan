@@ -107,7 +107,9 @@ uploaded_file = st.file_uploader("Upload Excel Master Data", type=["xlsx"])
 
 options = ['S1', 'SMA', 'SMP']
 selected_options = st.multiselect('Pilih beberapa opsi:', options)
-st.write(selected_options)
+if buah_pilihan:
+    st.write('Anda memilih buah-buahan:', buah_pilihan)
+
 
 #Upload
 if uploaded_file is not None:
