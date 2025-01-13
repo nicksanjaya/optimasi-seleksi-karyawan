@@ -50,8 +50,8 @@ def nilai(df):
 #Pendidikan
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
-    selected_options = st.multiselect('Pilih beberapa opsi:', options)
-    return selected_options
+    pendidikan_angka = st.multiselect('Pilih beberapa opsi:', options)
+    return pendidikan_angka
     
 
 #Optimasi
