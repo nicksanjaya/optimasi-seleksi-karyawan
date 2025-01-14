@@ -51,7 +51,8 @@ def nilai(df):
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
     pendidikan = st.multiselect('Pilih beberapa opsi:', options)
-    mapping = {'SMP': 1, 'S1': 3}
+    mapping = {'SMP': 1, 'SMA': 2, 'S1': 3}
+    df['Nilai'] = [mapping[p] for p in df['Nilai']]
     pendidikan_angka = [mapping[p] for p in pendidikan]
     return pendidikan_angka
 
