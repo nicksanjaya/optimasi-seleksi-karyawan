@@ -50,7 +50,7 @@ def nilai(df):
 #Pendidikan
 def pendidikan():
     options = ['S1', 'SMA', 'SMP']
-    pendidikan = st.multiselect('Pilih beberapa opsi:', options)
+    pendidikan = st.selectbox('Pilih beberapa opsi:', options)
     mapping = {'SMP': 1, 'SMA': 2, 'S1': 3}
     df['Pendidikan'] = [mapping[p] for p in df['Pendidikan']]
     pendidikan_angka = [mapping[p] for p in pendidikan]
