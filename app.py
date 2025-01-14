@@ -53,7 +53,7 @@ def pendidikan():
     pendidikan = st.selectbox('Pilih beberapa opsi:', options)
     mapping = {'SMP': 1, 'SMA': 2, 'S1': 3}
     df['Pendidikan'] = [mapping[p] for p in df['Pendidikan']]
-    pendidikan_angka = [mapping[p] for p in pendidikan]
+    pendidikan_angka = [mapping[pendidikan]]
     return pendidikan_angka
 
 #Optimasi
