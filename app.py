@@ -109,7 +109,7 @@ def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     st.write("\nHasil Seleksi Karyawan:")
     for k in model.karyawan:
         if model.x[k].value == 1:
-            st.write(f"Karyawan {model.nama[k]}: Dipilih (Pengalaman: {model.pengalaman[k]}, Gaji: {model.gaji[k]}, Nilai: {model.nilai[k]})")
+            st.write(f"Karyawan {model.nama[k]}: Dipilih (Pendidikan: {model.pendidikan[k]}, Pengalaman: {model.pengalaman[k]}, Gaji: {model.gaji[k]}, Nilai: {model.nilai[k]})")
 
 #Upload File 
 uploaded_file = st.file_uploader("Upload Excel Master Data", type=["xlsx"])
