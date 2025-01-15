@@ -46,6 +46,11 @@ def convert_df(df):
 #Nilai
 def nilai(df):
     df['Nilai'] = df[['Keterampilan', 'Pengalaman', 'Kepribadian', 'Motivasi', 'Fleksibilitas']].dot([0.2, 0.2, 0.2, 0.2, 0.2])
+    cols = list(df.columns)
+    cols.insert(0, cols.pop(cols.index('Nama')))
+
+    # Menyusun ulang kolom DataFrame
+    df = df[cols]
 
 #Pendidikan
 def pendidikan():
