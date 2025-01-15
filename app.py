@@ -51,6 +51,7 @@ def nilai(df):
 
     # Menyusun ulang kolom DataFrame
     df = df[cols]
+    return df
 
 #Pendidikan
 def pendidikan():
