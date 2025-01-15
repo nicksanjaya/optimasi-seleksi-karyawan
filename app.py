@@ -46,12 +46,6 @@ def convert_df(df):
 #Nilai
 def nilai(df):
     df['Nilai'] = df[['Keterampilan', 'Pengalaman', 'Kepribadian', 'Motivasi', 'Fleksibilitas']].dot([0.2, 0.2, 0.2, 0.2, 0.2])
-    cols = list(df.columns)
-    cols.insert(2, cols.pop(cols.index('Nama')))
-
-    # Menyusun ulang kolom DataFrame
-    df = df[cols]
-    return df
 
 #Pendidikan
 def pendidikan():
@@ -127,6 +121,9 @@ if uploaded_file is not None:
         df = preprocessing(df)
         df = convert_df(df)
         nilai(df)
+        cols = list(df.columns)
+        cols.insert(2, cols.pop(cols.index('Nama')))
+        df = df[cols]
         st.write(df)
     except Exception as e:
         st.error(f"Error reading the Excel file: {e}")
