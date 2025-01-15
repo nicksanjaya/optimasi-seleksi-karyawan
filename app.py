@@ -122,7 +122,7 @@ if uploaded_file is not None:
         df = convert_df(df)
         nilai(df)
         cols = list(df.columns)
-        cols.insert(2, cols.pop(cols.index('Nama')))
+        cols.insert(0, cols.pop(cols.index('Nama')))
         df = df[cols]
         st.write(df)
     except Exception as e:
