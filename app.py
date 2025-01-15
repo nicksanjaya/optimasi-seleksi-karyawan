@@ -47,7 +47,7 @@ def convert_df(df):
 def nilai(df):
     df['Nilai'] = df[['Keterampilan', 'Pengalaman', 'Kepribadian', 'Motivasi', 'Fleksibilitas']].dot([0.2, 0.2, 0.2, 0.2, 0.2])
     cols = list(df.columns)
-    cols.insert(0, cols.pop(cols.index('Nama')))
+    cols.insert(2, cols.pop(cols.index('Nama')))
 
     # Menyusun ulang kolom DataFrame
     df = df[cols]
