@@ -139,7 +139,6 @@ if uploaded_file is not None:
     if st.button("Calculate"):
         try:
             optimization(df,kuota,pengalaman,gaji,pendidikan_angka)
-            st.write(df)
         except Exception as e:
             st.error(f"Error : {e}")
 
