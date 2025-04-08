@@ -107,8 +107,8 @@ def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     
     #Hasil optimasi
     st.write("\nHasil Seleksi Karyawan:")
-    mapping = {1: 'SMP', 2: 'SMA', 3: 'S1'}
-    df['Pendidikan'] = [mapping[p] for p in df['Pendidikan']]
+    #mapping = {1: 'SMP', 2: 'SMA', 3: 'S1'}
+    #df['Pendidikan'] = [mapping[p] for p in df['Pendidikan']]
     for k in model.karyawan:
         if model.x[k].value == 1:
             st.write(f"Karyawan {model.nama[k]}: Dipilih (Pendidikan: {df.Pendidikan[k]}, Pengalaman: {model.pengalaman[k]}, Gaji: {model.gaji[k]}, Nilai: {model.nilai[k]})")
