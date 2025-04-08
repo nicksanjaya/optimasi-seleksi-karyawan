@@ -65,7 +65,11 @@ def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     # Parameter
     model.nama = Param(model.karyawan, initialize={k: df.iloc[k-1]['Nama'] for k in range(1, len(df) + 1)})
     model.gaji = Param(model.karyawan, initialize={k: df.iloc[k-1]['Gaji'] for k in range(1, len(df) + 1)})
+    model.keterampilan = Param(model.karyawan, initialize={k: df.iloc[k-1]['Keterampilan'] for k in range(1, len(df) + 1)})
     model.pengalaman = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pengalaman'] for k in range(1, len(df) + 1)})
+    model.kepribadian = Param(model.karyawan, initialize={k: df.iloc[k-1]['Kepribadian'] for k in range(1, len(df) + 1)})
+    model.motivasi = Param(model.karyawan, initialize={k: df.iloc[k-1]['Motivasi'] for k in range(1, len(df) + 1)})
+    model.fleksibilitas = Param(model.karyawan, initialize={k: df.iloc[k-1]['Fleksibilitas'] for k in range(1, len(df) + 1)})
     model.nilai = Param(model.karyawan, initialize={k: df.iloc[k-1]['Nilai'] for k in range(1, len(df) + 1)})    
     model.pendidikan = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pendidikan'] for k in range(1, len(df) + 1)})
     
@@ -77,10 +81,30 @@ def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     for indeks in model.karyawan:
         model.kendala_gaji.add(expr = model.gaji[indeks] * model.x[indeks] <= gaji)
     
+    # Kendala keterampilan
+    model.kendala_keterampilan = pyo.ConstraintList()
+    for indeks in model.karyawan:
+        model.kendala_keterampilan.add(expr = model.keterampilan[indeks] * model.x[indeks] >= keterampilan * model.x[indeks])
+
     # Kendala pengalaman
     model.kendala_pengalaman = pyo.ConstraintList()
     for indeks in model.karyawan:
         model.kendala_pengalaman.add(expr = model.pengalaman[indeks] * model.x[indeks] >= pengalaman * model.x[indeks])
+
+    # Kendala kepribadian
+    model.kendala_kepribadian = pyo.ConstraintList()
+    for indeks in model.karyawan:
+        model.kendala_kepribadian.add(expr = model.kepribadian[indeks] * model.x[indeks] >= kepribadian * model.x[indeks])
+
+    # Kendala motivasi
+    model.kendala_motivasi = pyo.ConstraintList()
+    for indeks in model.karyawan:
+        model.kendala_motivasi.add(expr = model.motivasi[indeks] * model.x[indeks] >= motivasi * model.x[indeks])
+
+    # Kendala fleksibilitas
+    model.kendala_fleksibilitas = pyo.ConstraintList()
+    for indeks in model.karyawan:
+        model.kendala_fleksibilitas.add(expr = model.fleksibilitas[indeks] * model.x[indeks] >= fleksibilitas * model.x[indeks])
     
     # Kendala kuota
     model.kendala_kuota = Constraint(expr=sum(model.x[k] for k in model.karyawan) <= kuota)
@@ -133,7 +157,11 @@ if uploaded_file is not None:
 
     #Input Capacity
     kuota = st.number_input("Kuota:", min_value=0)
+    keterampilan = st.number_input("Nilai Minimal Keterampilan:", min_value=0)
     pengalaman = st.number_input("Nilai Minimal Pengalaman:", min_value=0)
+    kepribadian = st.number_input("Nilai Minimal Kepribadian:", min_value=0)
+    motivasi = st.number_input("Nilai Minimal Motivasi:", min_value=0)
+    fleksibilitas = st.number_input("Nilai Minimal Fleksibilitas:", min_value=0)
     gaji = st.number_input("Gaji Maksimal:", min_value=0)
     pendidikan_angka = pendidikan()
     
