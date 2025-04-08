@@ -109,7 +109,7 @@ def optimization(df,kuota,pengalaman,gaji,pendidikan_angka):
     st.write("\nHasil Seleksi Karyawan:")
     mapping = {1: 'SMP', 2: 'SMA', 3: 'S1'}
     df['Pendidikan'] = [mapping[p] for p in df['Pendidikan']]
-    model.pengalaman = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pengalaman'] for k in range(1, len(df) + 1)})
+    model.pendidikan = Param(model.karyawan, initialize={k: df.iloc[k-1]['Pendidikan'] for k in range(1, len(df) + 1)})
     for k in model.karyawan:
         if model.x[k].value == 1:
             st.write(f"Karyawan {model.nama[k]}: Dipilih (Pendidikan: {model.pendidikan[k]}, Pengalaman: {model.pengalaman[k]}, Gaji: {model.gaji[k]}, Nilai: {model.nilai[k]})")
