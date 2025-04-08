@@ -135,6 +135,7 @@ if uploaded_file is not None:
     pengalaman = st.number_input("Nilai Minimal Pengalaman:", min_value=0)
     gaji = st.number_input("Gaji Maksimal:", min_value=0)
     pendidikan_angka = pendidikan()
+    st.write(df)
     
     if st.button("Calculate"):
         try:
